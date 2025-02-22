@@ -1,5 +1,5 @@
 import pytest
-from src.anki_card_object import Anki_Card
+from anki_card_object import Anki_Card
 
 
 

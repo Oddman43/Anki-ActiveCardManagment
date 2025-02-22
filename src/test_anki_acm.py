@@ -1,6 +1,6 @@
 import pytest
-from .anki_card_object import Anki_Card
-from ..src.anki_acm import update_tags
+from anki_card_object import Anki_Card
+from anki_acm import update_tags
 
 
 def test_percentage(cards_variations: list[Anki_Card]) -> None:
