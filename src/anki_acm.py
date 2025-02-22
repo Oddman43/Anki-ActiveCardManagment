@@ -44,6 +44,11 @@ def update_tags(tags_list: list, cards: list[Anki_Card]) -> None:
                 break
 
 
+def commit_update_tags(cards: list[Anki_Card]) -> None:
+    for card in cards:
+        updated_tags: dict = card.format_update_tags()
+        invoke("updateNoteTags",**updated_tags)
+
 
 def main() -> None:
     tags: list[str] = [
@@ -54,12 +59,13 @@ def main() -> None:
         "AnkiACM::90%-99%",
         "AnkiACM::100%",
     ]
-    decks: list = ["",]
+    decks: list = ["test",]
     for deck in decks:
         print(f"Getting card info for {deck}")
         cards: list[Anki_Card] = get_card_info(deck)
         print("Updating tags")
         update_tags(tags, cards)
+        commit_update_tags(cards)
 
 
 if __name__ == "__main__":
