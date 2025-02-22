@@ -3,7 +3,7 @@ from anki_connect import invoke
 
 
 def get_card_info(deck_name: str, min_reviews: int = 3, ) -> list:
-    """"Retrieves information about Anki cards from a specified deck.
+    """Retrieves information about Anki cards from a specified deck.
 
     This function uses the Anki Connect add-on API to fetch details about cards
     in a given deck. It filters cards based on a minimum number of reviews.
@@ -35,6 +35,11 @@ def get_card_info(deck_name: str, min_reviews: int = 3, ) -> list:
 
 
 def update_tags(tags_list: list, cards: list[Anki_Card]) -> None:
+    """Computes the correct tag and updates the object
+
+    :param tags_list:
+    :param cards:
+    """
     for card in cards:
         updated_tags = list(set(card.tags) - set(tags_list))
         ranges: list = [0.6, 0.7, 0.8, 0.9, 1.0, float("inf")]
@@ -45,12 +50,17 @@ def update_tags(tags_list: list, cards: list[Anki_Card]) -> None:
 
 
 def commit_update_tags(cards: list[Anki_Card]) -> None:
+    """Updates on Anki using Anki Connect the Cards
+
+    :param cards: A list of Anki_Cards
+    """
     for card in cards:
         updated_tags: dict = card.format_update_tags()
         invoke("updateNoteTags",**updated_tags)
 
 
 def main() -> None:
+    # Hacer que las tags las genere con list comprehension apartir de los niveles seleccionados
     tags: list[str] = [
         "AnkiACM::<60%",
         "AnkiACM::60%-70%",
@@ -59,7 +69,7 @@ def main() -> None:
         "AnkiACM::90%-99%",
         "AnkiACM::100%",
     ]
-    decks: list = ["test",]
+    decks: list = ["",]
     for deck in decks:
         print(f"Getting card info for {deck}")
         cards: list[Anki_Card] = get_card_info(deck)
