@@ -56,6 +56,8 @@ def generate_tags(increments: int = 10, tag_name: str = "AnkiACM", floor: int = 
 def update_tags(tags_list: list, cards: list[Anki_Card]) -> None:
     """Computes the correct tag and updates the object
 
+    Beaware if you choose a diferent tag_name or increments you may have to delete the old tags manually
+
     :param tags_list:
     :param cards:
     """
