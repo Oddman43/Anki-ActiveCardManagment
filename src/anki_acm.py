@@ -8,8 +8,7 @@ def get_card_info(
 ) -> list:
     """Retrieves information about Anki cards from a specified deck.
 
-    This function uses the Anki Connect add-on API to fetch details about cards
-    in a given deck. It filters cards based on a minimum number of reviews.
+    This function uses the Anki Connect add-on API to fetch details about cards in a given deck. It filters cards based on a minimum number of reviews.
 
     :param deck_name: The name of the Anki deck. Spaces in the name should be escaped (e.g., "My Deck" becomes "My%20Deck")
     :param min_reviews: The minimum number of reviews a card must have to be included in the results. Defaults to 3.
@@ -40,14 +39,16 @@ def get_card_info(
 def generate_tags(
     tag_name: str = "AnkiACM", floor: int = 60, increments: int = 10
 ) -> list:
-    """Generates a list containing the name of tags
+    """Generates a list of Anki tag names with percentage ranges.
 
-    Uses correct syntax so Anki connect and Anki can interpret correctly the tag
+    Uses correct syntax so Anki Connect and Anki can interpret the tags correctly.
 
-    :param increments: Defaults 10
-    :param tag_name: Defaults AnkiACM
-    :param floor: Defaults 60
-    :return: List of tag names
+    The tags are generated based on a floor percentage, increments, and a tag name with default values
+
+    :param tag_name: The base name for the tags. Defaults to "AnkiACM".
+    :param floor: The starting percentage for the ranges. Defaults to 60.
+    :param increments: The increment between percentage ranges. Defaults to 10.
+    :return: A list of tag names with percentage ranges.
     """
     percentages: list = [x for x in range(floor, 99, increments)]
     tag_list: list = [
@@ -61,12 +62,18 @@ def generate_tags(
 
 
 def update_tags(tags_list: list, cards: list[Anki_Card]) -> None:
-    """Computes the correct tag and updates the object
+    """Updates the tags of Anki cards based on their percentage.
 
-    Beaware if you choose a diferent tag_name or increments you may have to delete the old tags manually
+    This function iterates through a list of Anki cards and updates their tags based
+    on predefined percentage ranges.  It removes any existing tags that are in the
+    `tags_list` and adds the appropriate tag from `tags_list` based on the card's
+    `percentage` attribute.
 
-    :param tags_list:
-    :param cards:
+    Important: If you change the tag name, floor, or increments used to generate
+    `tags_list`, you may need to manually delete the old tags from your Anki cards.
+
+    :param tags_list: A list of tag names corresponding to percentage ranges. This list should be ordered from lowest to highest percentage range.
+    :param cards: A list of Anki card objects, each with a `percentage` attribute.
     """
     for card in cards:
         updated_tags = list(set(card.tags) - set(tags_list))
@@ -78,9 +85,14 @@ def update_tags(tags_list: list, cards: list[Anki_Card]) -> None:
 
 
 def commit_update_tags(cards: list[Anki_Card]) -> None:
-    """Updates the Anki tags using Anki Connect
+    """Updates the tags of Anki cards using Anki Connect.
 
-    :param cards: A list of Anki_Card objects
+    This function iterates through a list of Anki card objects and uses the
+    `updateNoteTags` Anki Connect API to update the tags of each card.  It relies
+    on the `format_update_tags` method of the `Anki_Card` object to prepare the
+    data in the format required by the Anki Connect API.
+
+    :param cards: A list of Anki card objects, each with a `format_update_tags` method that returns a dictionary suitable for the `updateNoteTags` Anki Connect API.
     """
     for card in cards:
         updated_tags: dict = card.format_update_tags()
