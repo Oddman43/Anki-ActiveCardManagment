@@ -2,16 +2,14 @@ import pytest
 from anki_card_object import Anki_Card
 
 
-
 @pytest.fixture
 def cards_variations() -> list[Anki_Card]:
-    """Generates a list of Anki_Card objects to unit test with pytest
-    """
+    """Generates a list of Anki_Card objects to unit test with pytest"""
     return [
         Anki_Card(
             32,
             2,
-            [ "AnkiACM::60%-70%"],
+            ["AnkiACM::60%-70%"],
             [
                 {"ease": 1, "lastIvl": 0},
                 {"ease": 3, "lastIvl": 100},
@@ -87,7 +85,9 @@ def cards_variations() -> list[Anki_Card]:
         Anki_Card(
             1_57,
             15,
-            ["AnkiACM::100%",],
+            [
+                "AnkiACM::100%",
+            ],
             [
                 {"ease": 1, "lastIvl": 100},
                 {"ease": 1, "lastIvl": 100},
@@ -122,6 +122,4 @@ def cards_variations() -> list[Anki_Card]:
                 {"ease": 3, "lastIvl": 100},
             ],
         ),
-
-
     ]

@@ -7,7 +7,7 @@ from test_cards_fixture import cards_variations
 def test_percentage(cards_variations: list[Anki_Card]) -> None:
     """Tests that the `__post_init__` method `compute_percentaje` works as intended
 
-    :param cards_variations: Pyests fixture of a list containing Anki_Card objects 
+    :param cards_variations: Pyests fixture of a list containing Anki_Card objects
     """
     percentages = [0.32, 0.64, 0.74, 0.84, 0.92, 1.0, 0.58, 0.64, 1.0]
     for i, card in enumerate(cards_variations):
@@ -17,7 +17,7 @@ def test_percentage(cards_variations: list[Anki_Card]) -> None:
 def test_update_tag(cards_variations: list[Anki_Card]) -> None:
     """Tests that the tags are updated or added correctly
 
-    :param cards_variations: Pyests fixture of a list containing Anki_Card objects 
+    :param cards_variations: Pyests fixture of a list containing Anki_Card objects
     """
     expected_tags: list = [
         "AnkiACM::<60%",
@@ -36,8 +36,7 @@ def test_update_tag(cards_variations: list[Anki_Card]) -> None:
 
 
 def test_generate_tags() -> None:
-    """Tests generate_tags function with a wide range of inputs
-    """
+    """Tests generate_tags function with a wide range of inputs"""
     tags_expected: list = [
         [
             "AnkiACM::<60%",
@@ -97,18 +96,21 @@ def test_generate_tags() -> None:
 
 
 def test_format_update_tags(cards_variations: Anki_Card) -> None:
-    """Tests `format_update_tags` method
-    """
+    """Tests `format_update_tags` method"""
     update_tags(generate_tags(), [cards_variations[0], cards_variations[7]])
     card_1: Anki_Card = cards_variations[0]
     card_2: Anki_Card = cards_variations[7]
     out_format_1: dict = {
         "note": 32,
-        "tags": ["AnkiACM::<60%",],
+        "tags": [
+            "AnkiACM::<60%",
+        ],
     }
     out_format_2: dict = {
         "note": 164,
-        "tags": ["AnkiACM::60%-70%",],
+        "tags": [
+            "AnkiACM::60%-70%",
+        ],
     }
     assert card_1.format_update_tags() == out_format_1
     assert card_2.format_update_tags() == out_format_2
