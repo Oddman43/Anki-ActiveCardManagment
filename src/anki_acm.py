@@ -2,14 +2,17 @@ from anki_card_object import Anki_Card
 from anki_connect import invoke
 
 
-def get_card_info(deck_name: str, min_reviews: int = 3, ) -> list:
+def get_card_info(
+    deck_name: str,
+    min_reviews: int = 3,
+) -> list:
     """Retrieves information about Anki cards from a specified deck.
 
     This function uses the Anki Connect add-on API to fetch details about cards
     in a given deck. It filters cards based on a minimum number of reviews.
 
     :param deck_name: The name of the Anki deck. Spaces in the name should be escaped (e.g., "My Deck" becomes "My%20Deck")
-    :param min_reviews: The minimum number of reviews a card must have to be included in the results. Defaults to 3.    
+    :param min_reviews: The minimum number of reviews a card must have to be included in the results. Defaults to 3.
     :return: A list of Anki_Card objects containing information about the retrived cards in the specified deck
     """
     info_review: dict = {
@@ -28,13 +31,15 @@ def get_card_info(deck_name: str, min_reviews: int = 3, ) -> list:
             dic["note"],
             dic["cardId"],
             invoke("getNoteTags", note=dic["note"]),
-            info_review[str(dic["cardId"])]
+            info_review[str(dic["cardId"])],
         )
         cards.append(card)
     return cards
 
 
-def generate_tags(increments: int = 10, tag_name: str = "AnkiACM", floor: int = 60) -> list:
+def generate_tags(
+    tag_name: str = "AnkiACM", floor: int = 60, increments: int = 10
+) -> list:
     """Generates a list containing the name of tags
 
     Uses correct syntax so Anki connect and Anki can interpret correctly the tag
@@ -45,7 +50,9 @@ def generate_tags(increments: int = 10, tag_name: str = "AnkiACM", floor: int = 
     :return: List of tag names
     """
     percentages: list = [x for x in range(floor, 99, increments)]
-    tag_list: list = [f"{tag_name}::<{floor}%",]
+    tag_list: list = [
+        f"{tag_name}::<{floor}%",
+    ]
     i: int = 0
     for i in range(len(percentages)):
         tag_list.append(f"{tag_name}::{percentages[i]}%-{percentages[i]+increments}%")
@@ -77,12 +84,20 @@ def commit_update_tags(cards: list[Anki_Card]) -> None:
     """
     for card in cards:
         updated_tags: dict = card.format_update_tags()
-        invoke("updateNoteTags",**updated_tags)
+        invoke("updateNoteTags", **updated_tags)
 
 
 def main() -> None:
-    tags: list[str] = generate_tags(increments= 10, tag_name= "AnkiACM", floor = 60)
-    decks: list = ["Change to deck name",]
+    # You can modify here the parameters of tags_list
+    tags_parameters: list = [
+        "AnkiACM",  # Tag name
+        60,  # Floor
+        10,  # Increments
+    ]
+    tags: list[str] = generate_tags(*tags_parameters)
+    decks: list = [
+        "Add deck name",
+    ]
     for deck in decks:
         print(f"Getting card info for {deck}")
         cards: list[Anki_Card] = get_card_info(deck)
