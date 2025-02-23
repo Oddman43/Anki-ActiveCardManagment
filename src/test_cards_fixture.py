@@ -7,11 +7,9 @@ from anki_card_object import Anki_Card
 def cards_variations() -> list[Anki_Card]:
     return [
         Anki_Card(
-            42,
+            32,
             2,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::60%-70%"],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
+            [ "AnkiACM::60%-70%"],
             [
                 {"ease": 1, "lastIvl": 0},
                 {"ease": 3, "lastIvl": 100},
@@ -23,9 +21,7 @@ def cards_variations() -> list[Anki_Card]:
         Anki_Card(
             65,
             4,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::70%-80%"],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
+            ["AnkiACM::70%-80%"],
             [
                 {"ease": 3, "lastIvl": 0},
                 {"ease": 1, "lastIvl": 100},
@@ -37,11 +33,11 @@ def cards_variations() -> list[Anki_Card]:
         Anki_Card(
             74,
             6,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::80%-90%"],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
+            ["AnkiACM::80%-90%"],
             [
                 {"ease": 1, "lastIvl": 0},
+                {"ease": 3, "lastIvl": 100},
+                {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
@@ -51,9 +47,7 @@ def cards_variations() -> list[Anki_Card]:
         Anki_Card(
             84,
             8,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::90%-99%"],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
+            ["AnkiACM::90%-100%"],
             [
                 {"ease": 3, "lastIvl": 0},
                 {"ease": 3, "lastIvl": 100},
@@ -63,13 +57,13 @@ def cards_variations() -> list[Anki_Card]:
             ],
         ),
         Anki_Card(
-            92,
+            91,
             8,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::100%"],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
+            ["AnkiACM::100%"],
             [
-                {"ease": 1, "lastIvl": 0},
+                {"ease": 2, "lastIvl": 0},
+                {"ease": 3, "lastIvl": 100},
+                {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
@@ -81,9 +75,7 @@ def cards_variations() -> list[Anki_Card]:
         Anki_Card(
             100,
             8,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::100%"],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
+            ["AnkiACM::100%"],
             [
                 {"ease": 3, "lastIvl": 0},
                 {"ease": 3, "lastIvl": 100},
@@ -91,28 +83,25 @@ def cards_variations() -> list[Anki_Card]:
             ],
         ),
         Anki_Card(
-            1001,
-            8,
+            1_57,
+            15,
+            ["AnkiACM::100%",],
             [
-                "BIR::2021",
-                "BIR::Fisiologia_Histologia",
-                "OFICIALES::100%",
-                "OFICIALES::MODED",
-            ],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
-            [
-                {"ease": 3, "lastIvl": 0},
+                {"ease": 1, "lastIvl": 100},
+                {"ease": 1, "lastIvl": 100},
+                {"ease": 1, "lastIvl": 100},
+                {"ease": 2, "lastIvl": 100},
+                {"ease": 3, "lastIvl": 100},
+                {"ease": 3, "lastIvl": 100},
+                {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
             ],
         ),
         Anki_Card(
+            1_64,
             1,
-            1,
-            ["BIR::2021", "BIR::Fisiologia_Histologia", "OFICIALES::70-80%", "GOBIR"],
-            "GOBIR image-oclusion",
-            "GOBIR image-oclusion",
+            [],
             [
                 {"ease": 1, "lastIvl": 0},
                 {"ease": 3, "lastIvl": 100},
@@ -122,34 +111,15 @@ def cards_variations() -> list[Anki_Card]:
             ],
         ),
         Anki_Card(
-            15,
-            15,
+            1_100,
+            8,
+            [],
             [
-                "BIR::2021",
-                "BIR::Fisiologia_Histologia",
-                "OFICIALES::100%",
-                "OFICIALES::MODED",
-            ],
-            "16. Pregunta 16<br><br><br>    1=> Opcion 1<br><br>    2=> Opcion 2<br><br>    3=> Opcion 3<br><br>    4=> Opcion 4",
-            "1",
-            [
-                {"ease": 1, "lastIvl": 0},
-                {"ease": 1, "lastIvl": 100},
-                {"ease": 1, "lastIvl": 100},
-                {"ease": 1, "lastIvl": 100},
-                {"ease": 1, "lastIvl": 100},
-                {"ease": 1, "lastIvl": 100},
-                {"ease": 1, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
-                {"ease": 3, "lastIvl": 100},
+                {"ease": 3, "lastIvl": 0},
                 {"ease": 3, "lastIvl": 100},
                 {"ease": 3, "lastIvl": 100},
             ],
         ),
+
+
     ]
