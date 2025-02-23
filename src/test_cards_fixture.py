@@ -5,6 +5,8 @@ from anki_card_object import Anki_Card
 
 @pytest.fixture
 def cards_variations() -> list[Anki_Card]:
+    """Generates a list of Anki_Card objects to unit test with pytest
+    """
     return [
         Anki_Card(
             32,
