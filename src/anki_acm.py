@@ -44,11 +44,11 @@ def generate_tags(increments: int = 10, tag_name: str = "AnkiACM", floor: int = 
     :param floor: Defaults 60
     :return: List of tag names
     """
-    percentages: list = [x for x in range(floor, 101, increments)]
+    percentages: list = [x for x in range(floor, 99, increments)]
     tag_list: list = [f"{tag_name}::<{floor}%",]
-    i: int = 1
+    i: int = 0
     for i in range(len(percentages)):
-        tag_list.append(f"{tag_name}::{percentages[i-1]}-{percentages[i]}%")
+        tag_list.append(f"{tag_name}::{percentages[i]}%-{percentages[i]+increments}%")
     tag_list.append(f"{tag_name}::100%")
     return tag_list
 
