@@ -8,7 +8,7 @@ def get_card_info(deck_name: str, min_reviews: int = 3, only_today=True) -> list
 
     This function uses the Anki Connect add-on API to fetch details about cards in a given deck. It filters cards based on a minimum number of reviews.
 
-    :param deck_name: The name of the Anki deck. Spaces in the name should be escaped (e.g., "My Deck" becomes "My%20Deck")
+    :param deck_name: The name of the Anki deck. Spaces in the name should be removed.
     :param min_reviews: The minimum number of reviews a card must have to be included in the results. Defaults to 3.
     :param only_today: If True, the results are limited to cards that have been reviewed today. If False, all cards meeting the `min_reviews` criteria are included. Defaults to True.
     :return: A list of Anki_Card objects containing information about the retrived cards in the specified deck
@@ -114,12 +114,12 @@ def main() -> None:
     ]
     tags: list[str] = generate_tags(*tags_parameters)
     decks: list = [
-        "test",
+        "Deck_Name",
     ]
     for deck in decks:
         print(f"Getting card info for {deck}")
         cards: list[Anki_Card] = get_card_info(deck)
-        print("Updating tags")
+        print(f"Updating tags for {deck}")
         update_tags(tags, cards)
         commit_update_tags(cards)
 
