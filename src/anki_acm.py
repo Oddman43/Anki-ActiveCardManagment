@@ -1,17 +1,16 @@
 from anki_card_object import Anki_Card
 from anki_connect import invoke
+from datetime import datetime
 
 
-def get_card_info(
-    deck_name: str,
-    min_reviews: int = 3,
-) -> list:
+def get_card_info(deck_name: str, min_reviews: int = 3, only_today=True) -> list:
     """Retrieves information about Anki cards from a specified deck.
 
     This function uses the Anki Connect add-on API to fetch details about cards in a given deck. It filters cards based on a minimum number of reviews.
 
     :param deck_name: The name of the Anki deck. Spaces in the name should be escaped (e.g., "My Deck" becomes "My%20Deck")
     :param min_reviews: The minimum number of reviews a card must have to be included in the results. Defaults to 3.
+    :param only_today: If True, the results are limited to cards that have been reviewed today. If False, all cards meeting the `min_reviews` criteria are included. Defaults to True.
     :return: A list of Anki_Card objects containing information about the retrived cards in the specified deck
     """
     info_review: dict = {
@@ -24,15 +23,22 @@ def get_card_info(
     cards_info: list[dict] = invoke(
         "cardsInfo", cards=[int(cid) for cid, _ in info_review.items()]
     )
-    cards = []
-    for dic in cards_info:
-        card = Anki_Card(
+    cards = [
+        Anki_Card(
             dic["note"],
             dic["cardId"],
             invoke("getNoteTags", note=dic["note"]),
             info_review[str(dic["cardId"])],
         )
-        cards.append(card)
+        for dic in cards_info
+        if not only_today
+        or (
+            datetime.fromtimestamp(
+                info_review[str(dic["cardId"])][-1]["id"] / 1000
+            ).date()
+            == datetime.now().date()
+        )
+    ]
     return cards
 
 
@@ -108,7 +114,7 @@ def main() -> None:
     ]
     tags: list[str] = generate_tags(*tags_parameters)
     decks: list = [
-        "Add deck name",
+        "test",
     ]
     for deck in decks:
         print(f"Getting card info for {deck}")
