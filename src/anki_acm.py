@@ -2,7 +2,6 @@ from anki_card_object import Anki_Card
 from anki_connect import invoke
 from datetime import datetime
 import sys
-import argparse
 
 
 def get_card_info(deck_name: str, min_reviews: int = 3, only_today=True) -> list:
