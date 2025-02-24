@@ -1,6 +1,8 @@
 from anki_card_object import Anki_Card
 from anki_connect import invoke
 from datetime import datetime
+import sys
+import argparse
 
 
 def get_card_info(deck_name: str, min_reviews: int = 3, only_today=True) -> list:
@@ -106,6 +108,13 @@ def commit_update_tags(cards: list[Anki_Card]) -> None:
 
 
 def main() -> None:
+    decks: list = [
+        "Manual_Deck_Name_1",
+        "Manual_Deck_Name_2" # To add more decks add a , to the end of the line and add the name of the deck surronded by ""
+        if len(sys.argv) < 2
+        else
+        arg for arg in sys.argv[1:]
+    ]
     # You can modify here the parameters of tags_list
     tags_parameters: list = [
         "AnkiACM",  # Tag name
@@ -113,9 +122,6 @@ def main() -> None:
         10,  # Increments
     ]
     tags: list[str] = generate_tags(*tags_parameters)
-    decks: list = [
-        "Deck_Name",
-    ]
     for deck in decks:
         print(f"Getting card info for {deck}")
         cards: list[Anki_Card] = get_card_info(deck)
