@@ -114,7 +114,6 @@ def main() -> None:
         else
         arg for arg in sys.argv[1:]
     ]
-    # You can modify here the parameters of tags_list
     tags_parameters: list = [
         "AnkiACM",  # Tag name
         60,  # Floor
@@ -123,7 +122,12 @@ def main() -> None:
     tags: list[str] = generate_tags(*tags_parameters)
     for deck in decks:
         print(f"Getting card info for {deck}")
-        cards: list[Anki_Card] = get_card_info(deck)
+        deck_info: list = [
+            deck, 
+            3, # Minimun of reviews
+            True # Consider only cards reviewed today
+        ]
+        cards: list[Anki_Card] = get_card_info(*deck_info)
         print(f"Updating tags for {deck}")
         update_tags(tags, cards)
         commit_update_tags(cards)
