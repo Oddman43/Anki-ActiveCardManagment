@@ -31,7 +31,6 @@ This script automates the process of updating tags for Anki cards based on their
 *   Anki
 *   [Anki Connect](https://ankiweb.net/shared/info/2055492159) Add-On
 *   Python 3.12.7 or superior
-*   `pip`
 *   `anki_card_object.py` (Implementation of the `Anki_Card` class)
 *   `anki_connect.py` (Implementation of the `invoke` function for Anki Connect)
 
